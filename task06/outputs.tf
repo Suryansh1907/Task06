@@ -7,3 +7,10 @@ output "app_hostname" {
   description = "The default hostname of the Azure Linux Web App."
   value       = module.webapp.app_hostname
 }
+
+output "sql_connection_string" {
+  description = "Sql Connection"
+  value       = module.sql.sql_connection_string
+  sensitive   = true
+}
+
