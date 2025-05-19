@@ -28,7 +28,7 @@ variable "dotnet_version" {
   description = "The .NET version for the Linux Web App (e.g., '8.0')."
 }
 
-# sql_connection_string is marked as sensitive to ensure secure handling
+# Explicitly marked as sensitive to receive the secure SQL connection string
 variable "sql_connection_string" {
   type        = string
   description = "The connection string for the Azure SQL Database to be used by the Web App."
