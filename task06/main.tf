@@ -4,6 +4,39 @@ resource "azurerm_resource_group" "rg" {
   tags     = var.tags
 }
 
+# Uncomment the following block if the Key Vault does not exist and needs to be created
+/*
+resource "azurerm_key_vault" "kv" {
+  name                        = var.key_vault_name
+  location                    = var.location
+  resource_group_name         = var.key_vault_rg_name
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  sku_name                    = "standard"
+  purge_protection_enabled    = false
+  soft_delete_retention_days  = 7
+  enable_rbac_authorization   = true
+  tags                        = var.tags
+
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
+
+    secret_permissions = [
+      "Get",
+      "List",
+      "Set",
+      "Delete",
+      "Purge",
+      "Recover",
+      "Backup",
+      "Restore"
+    ]
+  }
+}
+*/
+
+data "azurerm_client_config" "current" {}
+
 data "azurerm_key_vault" "existing_kv" {
   name                = var.key_vault_name
   resource_group_name = var.key_vault_rg_name
